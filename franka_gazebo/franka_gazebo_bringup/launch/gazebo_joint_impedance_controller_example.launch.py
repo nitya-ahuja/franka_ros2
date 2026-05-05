@@ -164,11 +164,18 @@ def generate_launch_description():
                     on_exit=[load_joint_state_broadcaster],
                 )
         ),
+        # RegisterEventHandler(
+        #     event_handler=OnProcessExit(
+        #         target_action=load_joint_state_broadcaster,
+        #         on_exit=[joint_impedance_example_controller],
+        #     )
+        # ),
+        # REPLACE with this:
         RegisterEventHandler(
-            event_handler=OnProcessExit(
-                target_action=load_joint_state_broadcaster,
-                on_exit=[joint_impedance_example_controller],
-            )
+                event_handler=OnProcessExit(
+                    target_action=load_joint_state_broadcaster,
+                    on_exit=[dynamic_tube_controller],
+                )
         ),
         Node(
             package='joint_state_publisher',
