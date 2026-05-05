@@ -47,24 +47,24 @@ dynamic_tube_controller:
   ros__parameters:
     robot_type: "fr3"
     gazebo: true
-    k_task: 2.5
-    vel_limit: 2.0
-    lambda_dls: 0.02
-    drift_limit: 0.1
-    df_gamma: 1.0
-    df_gamma_soft: 5.0
-    df_k1: 1.0
-    df_k2: 0.5
-    k_safe: 15.0
-    epsilon: 0.1
-    delta: 10.0
-    num_points: 50
-    dstt_gamma: 10.0
-    dstt_k1: 1.0
-    dstt_k2: 1.0
-    rho_max: 0.5
-    rho_min: 0.01
-    mu_decay: 0.1
-    q_vec_steady: 0.5
-    nu_joint_limit: 200.0
-    k_singularity: 2.5
+    # k_task: 2.5
+    # vel_limit: 2.0
+    # lambda_dls: 0.02
+    # drift_limit: 0.1
+    # df_gamma: 1.0
+    # df_gamma_soft: 5.0
+    # df_k1: 1.0
+    # df_k2: 0.5
+    # k_safe: 15.0
+    # epsilon: 0.1
+    # delta: 10.0
+    # num_points: 50
+    # dstt_gamma: 10.0
+    # dstt_k1: 1.0
+    # dstt_k2: 1.0
+    # rho_max: 0.5
+    # rho_min: 0.01
+    # mu_decay: 0.1
+    # q_vec_steady: 0.5
+    # nu_joint_limit: 200.0
+    # k_singularity: 2.5
