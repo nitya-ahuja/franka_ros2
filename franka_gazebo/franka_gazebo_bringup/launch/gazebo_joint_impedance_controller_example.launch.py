@@ -137,9 +137,15 @@ def generate_launch_description():
         output='screen'
     )
 
-    joint_impedance_example_controller = ExecuteProcess(
+    # joint_impedance_example_controller = ExecuteProcess(
+    #     cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
+    #             'joint_impedance_example_controller'],
+    #     output='screen'
+    # )
+
+    dynamic_tube_controller = ExecuteProcess(
         cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
-                'joint_impedance_example_controller'],
+                'dynamic_tube_controller'],
         output='screen'
     )
 
