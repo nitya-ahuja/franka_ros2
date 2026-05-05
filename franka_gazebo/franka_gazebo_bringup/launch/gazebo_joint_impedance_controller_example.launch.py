@@ -54,6 +54,11 @@ def get_robot_description(context: LaunchContext, arm_id, load_gripper, franka_h
         }
     )
     robot_description = {'robot_description': robot_description_config.toxml()}
+    controllers_yaml = os.path.join(
+        get_package_share_directory('franka_gazebo_bringup'),
+        'config',
+        'franka_gazebo_controllers.yaml'
+    )
 
     robot_state_publisher = Node(
         package='robot_state_publisher',
@@ -62,6 +67,7 @@ def get_robot_description(context: LaunchContext, arm_id, load_gripper, franka_h
         output='both',
         parameters=[
             robot_description,
+            controllers_yaml, 
         ]
     )
 
