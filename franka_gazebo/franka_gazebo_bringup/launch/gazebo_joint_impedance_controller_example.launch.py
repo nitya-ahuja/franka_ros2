@@ -54,11 +54,11 @@ def get_robot_description(context: LaunchContext, arm_id, load_gripper, franka_h
         }
     )
     robot_description = {'robot_description': robot_description_config.toxml()}
-    controllers_yaml = os.path.join(
-        get_package_share_directory('franka_gazebo_bringup'),
-        'config',
-        'franka_gazebo_controllers.yaml'
-    )
+    # controllers_yaml = os.path.join(
+    #     get_package_share_directory('franka_gazebo_bringup'),
+    #     'config',
+    #     'franka_gazebo_controllers.yaml'
+    #)
 
     robot_state_publisher = Node(
         package='robot_state_publisher',
@@ -67,7 +67,7 @@ def get_robot_description(context: LaunchContext, arm_id, load_gripper, franka_h
         output='both',
         parameters=[
             robot_description,
-            controllers_yaml, 
+            #controllers_yaml, 
         ]
     )
 
@@ -149,11 +149,17 @@ def generate_launch_description():
     #     output='screen'
     # )
 
-    dynamic_tube_controller = ExecuteProcess(
+    joint_impedance_example_controller = ExecuteProcess(
         cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
                 'dynamic_tube_controller'],
         output='screen'
     )
+
+    # dynamic_tube_controller = ExecuteProcess(
+    #     cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
+    #             'dynamic_tube_controller'],
+    #     output='screen'
+    # )
 
     return LaunchDescription([
         load_gripper_launch_argument,
@@ -170,19 +176,18 @@ def generate_launch_description():
                     on_exit=[load_joint_state_broadcaster],
                 )
         ),
-        # RegisterEventHandler(
-        #     event_handler=OnProcessExit(
-        #         target_action=load_joint_state_broadcaster,
-        #         on_exit=[joint_impedance_example_controller],
-        #     )
-        # ),
-        # REPLACE with this:
         RegisterEventHandler(
-                event_handler=OnProcessExit(
-                    target_action=load_joint_state_broadcaster,
-                    on_exit=[dynamic_tube_controller],
-                )
+            event_handler=OnProcessExit(
+                target_action=load_joint_state_broadcaster,
+                on_exit=[joint_impedance_example_controller],
+            )
         ),
+        # RegisterEventHandler(
+        #         event_handler=OnProcessExit(
+        #             target_action=load_joint_state_broadcaster,
+        #             on_exit=[dynamic_tube_controller],
+        #         )
+        # ),
         Node(
             package='joint_state_publisher',
             executable='joint_state_publisher',
